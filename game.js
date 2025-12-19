@@ -585,6 +585,26 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
+document.getElementById('btnUp').addEventListener("click", function(e) {
+    pacman.nextDirection = 'up';
+    e.preventDefault();
+});
+
+document.getElementById('btnDown').addEventListener("click", function(e) {
+    pacman.nextDirection = 'down';
+    e.preventDefault();
+});
+
+document.getElementById('btnLeft').addEventListener("click", function(e) {
+    pacman.nextDirection = 'left';
+    e.preventDefault();
+});
+
+document.getElementById('btnRight').addEventListener("click", function(e) {
+    pacman.nextDirection = 'right';
+    e.preventDefault();
+});
+
 // Restart the game
 function restartGame() {
     // Reset map

@@ -13,6 +13,12 @@ body {
     font-family: 'Comic Sans MS', 'Arial', sans-serif;
 }
 
+.game-container-wrapper {
+    display: flex;
+    justify-content: center;
+    max-width: 100%;
+}
+
 .game-container {
     display: flex;
     flex-direction: column;
