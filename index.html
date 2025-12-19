@@ -10,7 +10,15 @@
     <div class="game-container" id="gameContainer">
         <div class="score-board">Score: <span id="score">0</span></div>
         <canvas id="gameCanvas" width="700" height="775"></canvas>
-        <div class="instructions">Use Arrow Keys or WASD to move</div>
+        <div class="touch-controls" id="touchControls">
+            <button class="touch-btn up" id="btnUp">▲</button>
+            <div class="touch-row">
+                <button class="touch-btn left" id="btnLeft">◀</button>
+                <button class="touch-btn right" id="btnRight">▶</button>
+            </div>
+            <button class="touch-btn down" id="btnDown">▼</button>
+        </div>
+        <div class="instructions">Use Arrow Keys, WASD, or touch buttons</div>
     </div>
     <script src="game.js"></script>
 </body>
