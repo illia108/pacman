@@ -610,6 +610,11 @@ document.getElementById('btnRestart').addEventListener("click", function(e) {
     e.preventDefault();
 });
 
+document.getElementById('btnPlay').addEventListener("click", function(e) {
+    playVoiceCongrats();
+    e.preventDefault();
+});
+
 // Restart the game
 function restartGame() {
     // Reset map
