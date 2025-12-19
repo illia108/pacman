@@ -605,6 +605,11 @@ document.getElementById('btnRight').addEventListener("click", function(e) {
     e.preventDefault();
 });
 
+document.getElementById('btnRestart').addEventListener("click", function(e) {
+    restartGame();
+    e.preventDefault();
+});
+
 // Restart the game
 function restartGame() {
     // Reset map
@@ -688,7 +693,7 @@ function isPathTile(row, col) {
 
 // Game loop
 let lastMoveTime = 0;
-const moveInterval = 150; // ms between moves
+const moveInterval = 300; // ms between moves
 let lastGhostMoveTime = 0;
 const ghostMoveInterval = 400; // ghosts move slower than Pac-Man
 

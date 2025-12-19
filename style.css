@@ -86,6 +86,9 @@ body {
     align-items: center;
     gap: 5px;
     margin-top: 15px;
+    justify-content: center;
+    width: 100%;
+    position: relative;
 }
 
 .touch-row {
@@ -117,6 +120,11 @@ body {
     background: linear-gradient(145deg, #ffe4ec, #ffb6c1);
 }
 
+.touch-btn.restart {
+    position: absolute;
+    right: 0;
+}
+
 /* Show touch controls on touch devices */
 @media (pointer: coarse) {
     .touch-controls {
@@ -128,6 +136,9 @@ body {
 @media (max-width: 800px) {
     .touch-controls {
         display: flex;
+        position: relative;
+        width: 100%;
+        justify-content: center;
     }
 
     #gameCanvas {
