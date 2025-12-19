@@ -90,8 +90,9 @@ body {
 
 .touch-row {
     display: flex;
-    gap: 20px;
-    margin: 0 40px;
+    gap: 15px;
+    margin: 0 30px;
+    flex-direction: row;
 }
 
 .touch-btn {
