@@ -80,15 +80,9 @@ body {
     font-weight: bold;
 }
 
-/* Touch Controls */
+/* Touch Controls - hidden, using swipe gestures instead */
 .touch-controls {
-    display: none;
-    align-items: center;
-    gap: 5px;
-    margin-top: 15px;
-    justify-content: center;
-    width: 100%;
-    position: relative;
+    display: none !important;
 }
 
 .touch-row {

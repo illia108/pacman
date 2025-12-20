@@ -3,9 +3,9 @@ const ctx = canvas.getContext('2d');
 const scoreElement = document.getElementById('score');
 const gameContainer = document.getElementById('gameContainer');
 
-const TILE_SIZE = 25;
-const ROWS = 31;
-const COLS = 28;
+const TILE_SIZE = 40;
+const ROWS = 17;
+const COLS = 17;
 
 // Map legend:
 // 1 = wall
@@ -16,37 +16,23 @@ const COLS = 28;
 // 5 = strawberry (bottom-left)
 // 6 = banana (bottom-right)
 const map = [
-    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-    [1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1],
-    [1,0,1,1,1,1,0,1,1,1,1,1,0,1,1,0,1,1,1,1,1,0,1,1,1,1,0,1],
-    [1,3,1,1,1,1,0,1,1,1,1,1,0,1,1,0,1,1,1,1,1,0,1,1,1,1,4,1],
-    [1,0,1,1,1,1,0,1,1,1,1,1,0,1,1,0,1,1,1,1,1,0,1,1,1,1,0,1],
-    [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-    [1,0,1,1,1,1,0,1,1,0,1,1,1,1,1,1,1,1,0,1,1,0,1,1,1,1,0,1],
-    [1,0,1,1,1,1,0,1,1,0,1,1,1,1,1,1,1,1,0,1,1,0,1,1,1,1,0,1],
-    [1,0,0,0,0,0,0,1,1,0,0,0,0,1,1,0,0,0,0,1,1,0,0,0,0,0,0,1],
-    [1,1,1,1,1,1,0,1,1,1,1,1,2,1,1,2,1,1,1,1,1,0,1,1,1,1,1,1],
-    [1,1,1,1,1,1,0,1,1,1,1,1,2,1,1,2,1,1,1,1,1,0,1,1,1,1,1,1],
-    [1,1,1,1,1,1,0,1,1,2,2,2,2,2,2,2,2,2,2,1,1,0,1,1,1,1,1,1],
-    [1,1,1,1,1,1,0,1,1,2,1,1,1,2,2,1,1,1,2,1,1,0,1,1,1,1,1,1],
-    [1,1,1,1,1,1,0,1,1,2,1,2,2,2,2,2,2,1,2,1,1,0,1,1,1,1,1,1],
-    [2,2,2,2,2,2,0,2,2,2,1,2,2,2,2,2,2,1,2,2,2,0,2,2,2,2,2,2],
-    [1,1,1,1,1,1,0,1,1,2,1,2,2,2,2,2,2,1,2,1,1,0,1,1,1,1,1,1],
-    [1,1,1,1,1,1,0,1,1,2,1,1,1,1,1,1,1,1,2,1,1,0,1,1,1,1,1,1],
-    [1,1,1,1,1,1,0,1,1,2,2,2,2,2,2,2,2,2,2,1,1,0,1,1,1,1,1,1],
-    [1,1,1,1,1,1,0,1,1,2,1,1,1,1,1,1,1,1,2,1,1,0,1,1,1,1,1,1],
-    [1,1,1,1,1,1,0,1,1,2,1,1,1,1,1,1,1,1,2,1,1,0,1,1,1,1,1,1],
-    [1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1],
-    [1,0,1,1,1,1,0,1,1,1,1,1,0,1,1,0,1,1,1,1,1,0,1,1,1,1,0,1],
-    [1,0,1,1,1,1,0,1,1,1,1,1,0,1,1,0,1,1,1,1,1,0,1,1,1,1,0,1],
-    [1,5,0,0,1,1,0,0,0,0,0,0,0,2,2,0,0,0,0,0,0,0,1,1,0,0,6,1],
-    [1,1,1,0,1,1,0,1,1,0,1,1,1,1,1,1,1,1,0,1,1,0,1,1,0,1,1,1],
-    [1,1,1,0,1,1,0,1,1,0,1,1,1,1,1,1,1,1,0,1,1,0,1,1,0,1,1,1],
-    [1,0,0,0,0,0,0,1,1,0,0,0,0,1,1,0,0,0,0,1,1,0,0,0,0,0,0,1],
-    [1,0,1,1,1,1,1,1,1,1,1,1,0,1,1,0,1,1,1,1,1,1,1,1,1,1,0,1],
-    [1,0,1,1,1,1,1,1,1,1,1,1,0,1,1,0,1,1,1,1,1,1,1,1,1,1,0,1],
-    [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+    [1,1,1,1,1,1,1,2,2,2,1,1,1,1,1,1,1],
+    [1,3,0,0,0,0,0,0,0,0,0,0,0,0,0,4,1],
+    [1,0,1,1,0,1,1,1,0,1,1,1,0,1,1,0,1],
+    [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+    [1,0,1,0,1,1,0,1,1,1,0,1,1,0,1,0,1],
+    [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+    [1,1,1,0,1,0,1,1,2,1,1,0,1,0,1,1,1],
+    [2,2,2,0,1,0,1,2,2,2,1,0,1,0,2,2,2],
+    [1,1,1,0,1,0,1,2,2,2,1,0,1,0,1,1,1],
+    [1,0,0,0,0,0,0,2,2,2,0,0,0,0,0,0,1],
+    [1,0,1,0,1,1,0,1,1,1,0,1,1,0,1,0,1],
+    [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+    [1,0,1,1,0,1,1,1,0,1,1,1,0,1,1,0,1],
+    [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+    [1,5,0,1,0,1,0,0,0,0,0,1,0,1,0,6,1],
+    [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+    [1,1,1,1,1,1,1,2,2,2,1,1,1,1,1,1,1]
 ];
 
 // Game state
@@ -154,8 +140,8 @@ function playVoiceCongrats() {
 
 // Pac-Man
 const pacman = {
-    x: 14,
-    y: 23,
+    x: 8,
+    y: 13,
     direction: 'right',
     nextDirection: 'right',
     mouthOpen: true,
@@ -164,10 +150,10 @@ const pacman = {
 
 // Ghosts - friendly ghosts with cute colors
 const ghosts = [
-    { x: 13, y: 14, direction: 'left', color: '#ff9999', name: 'Pinky', flying: false, flyY: 0, flyStartTime: 0 },
-    { x: 14, y: 14, direction: 'up', color: '#99ffff', name: 'Inky', flying: false, flyY: 0, flyStartTime: 0 },
-    { x: 13, y: 15, direction: 'right', color: '#ffcc99', name: 'Clyde', flying: false, flyY: 0, flyStartTime: 0 },
-    { x: 14, y: 15, direction: 'down', color: '#cc99ff', name: 'Blinky', flying: false, flyY: 0, flyStartTime: 0 }
+    { x: 7, y: 7, direction: 'left', color: '#ff9999', name: 'Pinky', flying: false, flyY: 0, flyStartTime: 0 },
+    { x: 9, y: 7, direction: 'up', color: '#99ffff', name: 'Inky', flying: false, flyY: 0, flyStartTime: 0 },
+    { x: 7, y: 8, direction: 'right', color: '#ffcc99', name: 'Clyde', flying: false, flyY: 0, flyStartTime: 0 },
+    { x: 9, y: 8, direction: 'down', color: '#cc99ff', name: 'Blinky', flying: false, flyY: 0, flyStartTime: 0 }
 ];
 
 // Giggle sound (hi-hi)
@@ -301,9 +287,11 @@ function moveGhosts() {
             case 'right': nextX++; break;
         }
 
-        // Handle tunnel wrapping
+        // Handle tunnel wrapping (left/right and top/bottom)
         if (nextX < 0) nextX = COLS - 1;
         if (nextX >= COLS) nextX = 0;
+        if (nextY < 0) nextY = ROWS - 1;
+        if (nextY >= ROWS) nextY = 0;
 
         if (isValidPosition(nextX, nextY)) {
             ghost.x = nextX;
@@ -328,8 +316,8 @@ function checkGhostCollision() {
             setTimeout(() => {
                 ghost.flying = false;
                 ghost.flyY = 0;
-                ghost.x = 13 + Math.floor(Math.random() * 2);
-                ghost.y = 14 + Math.floor(Math.random() * 2);
+                ghost.x = 7 + Math.floor(Math.random() * 3);
+                ghost.y = 7 + Math.floor(Math.random() * 2);
             }, 5000);
         }
     });
@@ -438,12 +426,9 @@ function drawPacman() {
 
 // Check if a position is valid (not a wall)
 function isValidPosition(x, y) {
-    // Handle tunnel wrapping
-    if (x < 0 || x >= COLS) {
+    // Handle tunnel wrapping (left/right and top/bottom)
+    if (x < 0 || x >= COLS || y < 0 || y >= ROWS) {
         return true;
-    }
-    if (y < 0 || y >= ROWS) {
-        return false;
     }
     return map[y][x] !== 1;
 }
@@ -476,11 +461,16 @@ function movePacman() {
         case 'down': nextY++; break;
     }
 
-    // Handle tunnel
+    // Handle tunnel (left/right and top/bottom)
     if (nextX < 0) {
         nextX = COLS - 1;
     } else if (nextX >= COLS) {
         nextX = 0;
+    }
+    if (nextY < 0) {
+        nextY = ROWS - 1;
+    } else if (nextY >= ROWS) {
+        nextY = 0;
     }
 
     if (isValidPosition(nextX, nextY)) {
@@ -610,6 +600,50 @@ document.getElementById('btnRestart').addEventListener("click", function(e) {
     e.preventDefault();
 });
 
+// Touch swipe controls on canvas
+let touchStartX = 0;
+let touchStartY = 0;
+let touchStartTime = 0;
+
+canvas.addEventListener('touchstart', function(e) {
+    const touch = e.touches[0];
+    touchStartX = touch.clientX;
+    touchStartY = touch.clientY;
+    touchStartTime = Date.now();
+    e.preventDefault();
+}, { passive: false });
+
+canvas.addEventListener('touchend', function(e) {
+    const touch = e.changedTouches[0];
+    const deltaX = touch.clientX - touchStartX;
+    const deltaY = touch.clientY - touchStartY;
+    const deltaTime = Date.now() - touchStartTime;
+
+    // Minimum swipe distance and maximum time
+    const minSwipeDistance = 30;
+    const maxSwipeTime = 500;
+
+    if (deltaTime < maxSwipeTime) {
+        if (Math.abs(deltaX) > Math.abs(deltaY)) {
+            // Horizontal swipe
+            if (Math.abs(deltaX) > minSwipeDistance) {
+                pacman.nextDirection = deltaX > 0 ? 'right' : 'left';
+            }
+        } else {
+            // Vertical swipe
+            if (Math.abs(deltaY) > minSwipeDistance) {
+                pacman.nextDirection = deltaY > 0 ? 'down' : 'up';
+            }
+        }
+    }
+    e.preventDefault();
+}, { passive: false });
+
+// Prevent scrolling when touching canvas
+canvas.addEventListener('touchmove', function(e) {
+    e.preventDefault();
+}, { passive: false });
+
 // Restart the game
 function restartGame() {
     // Reset map
@@ -617,13 +651,13 @@ function restartGame() {
         for (let col = 0; col < COLS; col++) {
             if (map[row][col] === 2) {
                 // Check if it was originally a fruit position
-                if (row === 3 && col === 1) {
+                if (row === 1 && col === 1) {
                     map[row][col] = 3; // Cherry
-                } else if (row === 3 && col === 26) {
+                } else if (row === 1 && col === 15) {
                     map[row][col] = 4; // Apple
-                } else if (row === 23 && col === 1) {
+                } else if (row === 14 && col === 1) {
                     map[row][col] = 5; // Strawberry
-                } else if (row === 23 && col === 26) {
+                } else if (row === 14 && col === 15) {
                     map[row][col] = 6; // Banana
                 } else if (isPathTile(row, col)) {
                     map[row][col] = 0;
@@ -633,16 +667,16 @@ function restartGame() {
     }
 
     // Reset Pac-Man
-    pacman.x = 14;
-    pacman.y = 23;
+    pacman.x = 8;
+    pacman.y = 13;
     pacman.direction = 'right';
     pacman.nextDirection = 'right';
 
     // Reset ghosts
-    ghosts[0].x = 13; ghosts[0].y = 14; ghosts[0].direction = 'left'; ghosts[0].flying = false; ghosts[0].flyY = 0;
-    ghosts[1].x = 14; ghosts[1].y = 14; ghosts[1].direction = 'up'; ghosts[1].flying = false; ghosts[1].flyY = 0;
-    ghosts[2].x = 13; ghosts[2].y = 15; ghosts[2].direction = 'right'; ghosts[2].flying = false; ghosts[2].flyY = 0;
-    ghosts[3].x = 14; ghosts[3].y = 15; ghosts[3].direction = 'down'; ghosts[3].flying = false; ghosts[3].flyY = 0;
+    ghosts[0].x = 7; ghosts[0].y = 7; ghosts[0].direction = 'left'; ghosts[0].flying = false; ghosts[0].flyY = 0;
+    ghosts[1].x = 9; ghosts[1].y = 7; ghosts[1].direction = 'up'; ghosts[1].flying = false; ghosts[1].flyY = 0;
+    ghosts[2].x = 7; ghosts[2].y = 8; ghosts[2].direction = 'right'; ghosts[2].flying = false; ghosts[2].flyY = 0;
+    ghosts[3].x = 9; ghosts[3].y = 8; ghosts[3].direction = 'down'; ghosts[3].flying = false; ghosts[3].flyY = 0;
 
     // Reset score
     score = 0;
@@ -656,37 +690,23 @@ function restartGame() {
 // Check if a tile should have a dot
 function isPathTile(row, col) {
     const originalMap = [
-        [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-        [1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1],
-        [1,0,1,1,1,1,0,1,1,1,1,1,0,1,1,0,1,1,1,1,1,0,1,1,1,1,0,1],
-        [1,3,1,1,1,1,0,1,1,1,1,1,0,1,1,0,1,1,1,1,1,0,1,1,1,1,3,1],
-        [1,0,1,1,1,1,0,1,1,1,1,1,0,1,1,0,1,1,1,1,1,0,1,1,1,1,0,1],
-        [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-        [1,0,1,1,1,1,0,1,1,0,1,1,1,1,1,1,1,1,0,1,1,0,1,1,1,1,0,1],
-        [1,0,1,1,1,1,0,1,1,0,1,1,1,1,1,1,1,1,0,1,1,0,1,1,1,1,0,1],
-        [1,0,0,0,0,0,0,1,1,0,0,0,0,1,1,0,0,0,0,1,1,0,0,0,0,0,0,1],
-        [1,1,1,1,1,1,0,1,1,1,1,1,2,1,1,2,1,1,1,1,1,0,1,1,1,1,1,1],
-        [1,1,1,1,1,1,0,1,1,1,1,1,2,1,1,2,1,1,1,1,1,0,1,1,1,1,1,1],
-        [1,1,1,1,1,1,0,1,1,2,2,2,2,2,2,2,2,2,2,1,1,0,1,1,1,1,1,1],
-        [1,1,1,1,1,1,0,1,1,2,1,1,1,2,2,1,1,1,2,1,1,0,1,1,1,1,1,1],
-        [1,1,1,1,1,1,0,1,1,2,1,2,2,2,2,2,2,1,2,1,1,0,1,1,1,1,1,1],
-        [2,2,2,2,2,2,0,2,2,2,1,2,2,2,2,2,2,1,2,2,2,0,2,2,2,2,2,2],
-        [1,1,1,1,1,1,0,1,1,2,1,2,2,2,2,2,2,1,2,1,1,0,1,1,1,1,1,1],
-        [1,1,1,1,1,1,0,1,1,2,1,1,1,1,1,1,1,1,2,1,1,0,1,1,1,1,1,1],
-        [1,1,1,1,1,1,0,1,1,2,2,2,2,2,2,2,2,2,2,1,1,0,1,1,1,1,1,1],
-        [1,1,1,1,1,1,0,1,1,2,1,1,1,1,1,1,1,1,2,1,1,0,1,1,1,1,1,1],
-        [1,1,1,1,1,1,0,1,1,2,1,1,1,1,1,1,1,1,2,1,1,0,1,1,1,1,1,1],
-        [1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1],
-        [1,0,1,1,1,1,0,1,1,1,1,1,0,1,1,0,1,1,1,1,1,0,1,1,1,1,0,1],
-        [1,0,1,1,1,1,0,1,1,1,1,1,0,1,1,0,1,1,1,1,1,0,1,1,1,1,0,1],
-        [1,3,0,0,1,1,0,0,0,0,0,0,0,2,2,0,0,0,0,0,0,0,1,1,0,0,3,1],
-        [1,1,1,0,1,1,0,1,1,0,1,1,1,1,1,1,1,1,0,1,1,0,1,1,0,1,1,1],
-        [1,1,1,0,1,1,0,1,1,0,1,1,1,1,1,1,1,1,0,1,1,0,1,1,0,1,1,1],
-        [1,0,0,0,0,0,0,1,1,0,0,0,0,1,1,0,0,0,0,1,1,0,0,0,0,0,0,1],
-        [1,0,1,1,1,1,1,1,1,1,1,1,0,1,1,0,1,1,1,1,1,1,1,1,1,1,0,1],
-        [1,0,1,1,1,1,1,1,1,1,1,1,0,1,1,0,1,1,1,1,1,1,1,1,1,1,0,1],
-        [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-        [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+        [1,1,1,1,1,1,1,2,2,2,1,1,1,1,1,1,1],
+        [1,3,0,0,0,0,0,0,0,0,0,0,0,0,0,4,1],
+        [1,0,1,1,0,1,1,1,0,1,1,1,0,1,1,0,1],
+        [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+        [1,0,1,0,1,1,0,1,1,1,0,1,1,0,1,0,1],
+        [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+        [1,1,1,0,1,0,1,1,2,1,1,0,1,0,1,1,1],
+        [2,2,2,0,1,0,1,2,2,2,1,0,1,0,2,2,2],
+        [1,1,1,0,1,0,1,2,2,2,1,0,1,0,1,1,1],
+        [1,0,0,0,0,0,0,2,2,2,0,0,0,0,0,0,1],
+        [1,0,1,0,1,1,0,1,1,1,0,1,1,0,1,0,1],
+        [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+        [1,0,1,1,0,1,1,1,0,1,1,1,0,1,1,0,1],
+        [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+        [1,5,0,1,0,1,0,0,0,0,0,1,0,1,0,6,1],
+        [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+        [1,1,1,1,1,1,1,2,2,2,1,1,1,1,1,1,1]
     ];
     return originalMap[row][col] === 0;
 }
